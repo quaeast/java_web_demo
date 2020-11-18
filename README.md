@@ -120,7 +120,7 @@ META-INF
 
 ```
 
-# 查看`META-INF/services/java.sql.Driver`，和[上文](https://www.baeldung.com/java-jdbc-loading-drivers)讲述相符合
+查看`META-INF/services/java.sql.Driver`，和[上文](https://www.baeldung.com/java-jdbc-loading-drivers)讲述相符合
 
 ```shell script
 cat services/java.sql.Driver 
