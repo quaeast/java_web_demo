@@ -1,10 +1,12 @@
 # JDBC demo
 
+这个 demo 最开始是想看看 Java JDBC 接口和驱动这种解耦合的设计方式以及 Maven 的 <scope>runtime</scope>
+
+后来发现我还不会用 Maven package 可执行 jar 包，就顺便写上了
+
 ## maven 可执行 jar 包
 
-[ref](https://www.baeldung.com/executable-jar-with-maven)
-
-有三种方法可供选择
+有三种方法可供选择 [ref](https://www.baeldung.com/executable-jar-with-maven)
 
 ### 手动
 
@@ -78,4 +80,7 @@
 </plugin>
 ```
 
+### Spring boot plugin
+
+本项目采用，推荐
 
