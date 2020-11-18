@@ -4,9 +4,13 @@
 
 后来发现我还不会用 Maven package 可执行 jar 包，就顺便写上了
 
-## maven 可执行 jar 包
+## JDBC 连接 [ref](https://www.baeldung.com/java-jdbc-loading-drivers)
 
-有三种方法可供选择 [ref](https://www.baeldung.com/executable-jar-with-maven)
+JDBC driver 现在可以隐式加载，不需要显式声明。
+
+## maven 可执行 jar 包 [ref](https://www.baeldung.com/executable-jar-with-maven)
+
+有三种方法可供选择 
 
 ### 手动
 
