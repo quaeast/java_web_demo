@@ -84,7 +84,153 @@ JDBC driver 现在可以隐式加载，不需要显式声明。
 </plugin>
 ```
 
+查看自动装载驱动的设置
+
+```
+META-INF
+├── INDEX.LIST
+├── INFO_BIN
+├── INFO_SRC
+├── LICENSE
+├── MANIFEST.MF
+├── README
+├── gradle
+│   └── incremental.annotation.processors
+├── maven
+│   └── com.google.protobuf
+│       └── protobuf-java
+│           ├── pom.properties
+│           └── pom.xml
+└── services
+    ├── java.sql.Driver
+    ├── javax.annotation.processing.Processor
+    ├── lombok.core.LombokApp
+    ├── lombok.core.PostCompilerTransformation
+    ├── lombok.core.runtimeDependencies.RuntimeDependencyInfo
+    ├── lombok.eclipse.EclipseASTVisitor
+    ├── lombok.eclipse.EclipseAnnotationHandler
+    ├── lombok.eclipse.handlers.EclipseSingularsRecipes$EclipseSingularizer
+    ├── lombok.installer.IdeLocationProvider
+    ├── lombok.javac.JavacASTVisitor
+    ├── lombok.javac.JavacAnnotationHandler
+    ├── lombok.javac.handlers.JavacSingularsRecipes$JavacSingularizer
+    └── org.mapstruct.ap.spi.AstModifyingAnnotationProcessor
+
+5 directories, 22 files
+
+```
+
+# 查看`META-INF/services/java.sql.Driver`，和[上文](https://www.baeldung.com/java-jdbc-loading-drivers)讲述相符合
+
+```shell script
+cat services/java.sql.Driver 
+com.mysql.cj.jdbc.Driver%
+``` 
+
 ### Spring boot plugin
 
-本项目采用，推荐
+本项目采用 spring boot 的构建工具。
 
+值得注意的是，他的打包结果和传统的并不一样，应该是 Spring 对加载做了自己的处理，和 Java 的原生机制不同。
+
+
+```
+.
+├── BOOT-INF
+│   ├── classes
+│   │   └── cn
+│   │       └── quaeast
+│   │           ├── Main.class
+│   │           └── Person.class
+│   ├── classpath.idx
+│   ├── layers.idx
+│   └── lib
+│       ├── lombok-1.18.12.jar
+│       ├── mysql-connector-java-8.0.19.jar
+│       ├── protobuf-java-3.6.1.jar
+│       └── spring-boot-jarmode-layertools-2.4.0.jar
+├── META-INF
+│   ├── MANIFEST.MF
+│   └── maven
+│       └── cn.quaeast
+│           └── jdbc_demo
+│               ├── pom.properties
+│               └── pom.xml
+└── org
+    └── springframework
+        └── boot
+            └── loader
+                ├── ClassPathIndexFile.class
+                ├── ExecutableArchiveLauncher.class
+                ├── JarLauncher.class
+                ├── LaunchedURLClassLoader$DefinePackageCallType.class
+                ├── LaunchedURLClassLoader$UseFastConnectionExceptionsEnumeration.class
+                ├── LaunchedURLClassLoader.class
+                ├── Launcher.class
+                ├── MainMethodRunner.class
+                ├── PropertiesLauncher$1.class
+                ├── PropertiesLauncher$ArchiveEntryFilter.class
+                ├── PropertiesLauncher$ClassPathArchives.class
+                ├── PropertiesLauncher$PrefixMatchingArchiveFilter.class
+                ├── PropertiesLauncher.class
+                ├── WarLauncher.class
+                ├── archive
+                │   ├── Archive$Entry.class
+                │   ├── Archive$EntryFilter.class
+                │   ├── Archive.class
+                │   ├── ExplodedArchive$AbstractIterator.class
+                │   ├── ExplodedArchive$ArchiveIterator.class
+                │   ├── ExplodedArchive$EntryIterator.class
+                │   ├── ExplodedArchive$FileEntry.class
+                │   ├── ExplodedArchive$SimpleJarFileArchive.class
+                │   ├── ExplodedArchive.class
+                │   ├── JarFileArchive$AbstractIterator.class
+                │   ├── JarFileArchive$EntryIterator.class
+                │   ├── JarFileArchive$JarFileEntry.class
+                │   ├── JarFileArchive$NestedArchiveIterator.class
+                │   └── JarFileArchive.class
+                ├── data
+                │   ├── RandomAccessData.class
+                │   ├── RandomAccessDataFile$1.class
+                │   ├── RandomAccessDataFile$DataInputStream.class
+                │   ├── RandomAccessDataFile$FileAccess.class
+                │   └── RandomAccessDataFile.class
+                ├── jar
+                │   ├── AbstractJarFile$JarFileType.class
+                │   ├── AbstractJarFile.class
+                │   ├── AsciiBytes.class
+                │   ├── Bytes.class
+                │   ├── CentralDirectoryEndRecord$1.class
+                │   ├── CentralDirectoryEndRecord$Zip64End.class
+                │   ├── CentralDirectoryEndRecord$Zip64Locator.class
+                │   ├── CentralDirectoryEndRecord.class
+                │   ├── CentralDirectoryFileHeader.class
+                │   ├── CentralDirectoryParser.class
+                │   ├── CentralDirectoryVisitor.class
+                │   ├── FileHeader.class
+                │   ├── Handler.class
+                │   ├── JarEntry.class
+                │   ├── JarEntryCertification.class
+                │   ├── JarEntryFilter.class
+                │   ├── JarFile$1.class
+                │   ├── JarFile$JarEntryEnumeration.class
+                │   ├── JarFile.class
+                │   ├── JarFileEntries$1.class
+                │   ├── JarFileEntries$EntryIterator.class
+                │   ├── JarFileEntries.class
+                │   ├── JarFileWrapper.class
+                │   ├── JarURLConnection$1.class
+                │   ├── JarURLConnection$JarEntryName.class
+                │   ├── JarURLConnection.class
+                │   ├── StringSequence.class
+                │   └── ZipInflaterInputStream.class
+                ├── jarmode
+                │   ├── JarMode.class
+                │   ├── JarModeLauncher.class
+                │   └── TestJarMode.class
+                └── util
+                    └── SystemPropertyUtils.class
+
+18 directories, 76 files
+
+```
