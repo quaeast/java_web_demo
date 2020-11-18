@@ -1,6 +1,6 @@
 # JDBC demo
 
-这个 demo 最开始是想看看 Java JDBC 接口和驱动这种解耦合的设计方式以及 Maven 的 <scope>runtime</scope>
+这个 demo 最开始是想看看 Java JDBC 接口和驱动这种解耦合的设计方式以及 Maven 的 `<scope>runtime</scope>`
 
 后来发现我还不会用 Maven package 可执行 jar 包，就顺便写上了
 
