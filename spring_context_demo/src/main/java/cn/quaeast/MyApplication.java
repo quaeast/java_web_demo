@@ -12,6 +12,7 @@ public class MyApplication {
 //        ApplicationContext ctx = new AnnotationConfigApplicationContext();
         UserDao userDao = ctx.getBean(UserDao.class);
         DataSource dataSource = ctx.getBean(DataSource.class);
-        System.out.println( userDao);
+        System.out.println(userDao);
+        userDao.findUserById(10L);
     }
 }
