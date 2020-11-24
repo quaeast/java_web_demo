@@ -3,3 +3,8 @@
 target/
 *.iml
 jdbc_demo.iml
+
+.project
+.classpath
+.factorypath
+*.prefs
