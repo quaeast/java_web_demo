@@ -12,7 +12,7 @@ public class Main {
         //Class.forName("com.mysql.cj.jdbc.Driver");
         String JDBC_URL = "jdbc:mysql://localhost:3306/testDB";
         String JDBC_USER = "root";
-        String JDBC_PASSWORD = "123456@Abcdefg";
+        String JDBC_PASSWORD = "123456@Abcdef";
         System.out.println(DriverManager.getDrivers());
         Connection conn = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD);
         String sql ="select * from person;";
